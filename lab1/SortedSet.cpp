@@ -26,7 +26,7 @@ bool SortedSet::add(TComp elem) {
 
     // Put elem on ordered position
     for (int i = len - 1; i >= 0; i--)
-        if (elem < elems[i])
+        if (r(elem, elems[i])) // elem < elems[i]
             elems[i + 1] = elems[i];
         else
             elems[i + 1] = elem;
@@ -38,6 +38,14 @@ bool SortedSet::add(TComp elem) {
 
 bool SortedSet::remove(TComp elem) {
     //TODO - Implementation
+    int pos = -1; //pos = binary(elem)
+
+    if (pos != -1) {
+        for (int i = pos; i < len; i++)
+            elems[i] = elems[i + 1];
+        len--;
+        return true;
+    }
     return false;
 }
 
@@ -48,7 +56,7 @@ bool SortedSet::search(TComp elem) const {
         mid = (low + high) / 2;
         if (elem == elems[mid])
             return true;
-        else if (elem > elems[mid])
+        else if (!r(elem, elems[mid])) //elem > elems[mid]
             low = mid + 1;
         else
             high = mid - 1;
@@ -64,8 +72,7 @@ int SortedSet::size() const {
 
 
 bool SortedSet::isEmpty() const {
-    //TODO - Implementation
-    return false;
+    return len == 0;
 }
 
 SortedSetIterator SortedSet::iterator() const {
