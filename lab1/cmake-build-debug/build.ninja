@@ -55,14 +55,26 @@ build CMakeFiles/lab1.dir/App.cpp.obj: CXX_COMPILER__lab1_Debug D$:/Dev/sda/lab1
   OBJECT_DIR = CMakeFiles\lab1.dir
   OBJECT_FILE_DIR = CMakeFiles\lab1.dir
 
-build CMakeFiles/lab1.dir/main.cpp.obj: CXX_COMPILER__lab1_Debug D$:/Dev/sda/lab1/main.cpp || cmake_object_order_depends_target_lab1
-  DEP_FILE = CMakeFiles\lab1.dir\main.cpp.obj.d
+build CMakeFiles/lab1.dir/SortedSet.cpp.obj: CXX_COMPILER__lab1_Debug D$:/Dev/sda/lab1/SortedSet.cpp || cmake_object_order_depends_target_lab1
+  DEP_FILE = CMakeFiles\lab1.dir\SortedSet.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu++20
   OBJECT_DIR = CMakeFiles\lab1.dir
   OBJECT_FILE_DIR = CMakeFiles\lab1.dir
 
-build CMakeFiles/lab1.dir/SortedSet.cpp.obj: CXX_COMPILER__lab1_Debug D$:/Dev/sda/lab1/SortedSet.cpp || cmake_object_order_depends_target_lab1
-  DEP_FILE = CMakeFiles\lab1.dir\SortedSet.cpp.obj.d
+build CMakeFiles/lab1.dir/SortedSetIterator.cpp.obj: CXX_COMPILER__lab1_Debug D$:/Dev/sda/lab1/SortedSetIterator.cpp || cmake_object_order_depends_target_lab1
+  DEP_FILE = CMakeFiles\lab1.dir\SortedSetIterator.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu++20
+  OBJECT_DIR = CMakeFiles\lab1.dir
+  OBJECT_FILE_DIR = CMakeFiles\lab1.dir
+
+build CMakeFiles/lab1.dir/ShortTest.cpp.obj: CXX_COMPILER__lab1_Debug D$:/Dev/sda/lab1/ShortTest.cpp || cmake_object_order_depends_target_lab1
+  DEP_FILE = CMakeFiles\lab1.dir\ShortTest.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu++20
+  OBJECT_DIR = CMakeFiles\lab1.dir
+  OBJECT_FILE_DIR = CMakeFiles\lab1.dir
+
+build CMakeFiles/lab1.dir/ExtendedTest.cpp.obj: CXX_COMPILER__lab1_Debug D$:/Dev/sda/lab1/ExtendedTest.cpp || cmake_object_order_depends_target_lab1
+  DEP_FILE = CMakeFiles\lab1.dir\ExtendedTest.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu++20
   OBJECT_DIR = CMakeFiles\lab1.dir
   OBJECT_FILE_DIR = CMakeFiles\lab1.dir
@@ -75,7 +87,7 @@ build CMakeFiles/lab1.dir/SortedSet.cpp.obj: CXX_COMPILER__lab1_Debug D$:/Dev/sd
 #############################################
 # Link the executable lab1.exe
 
-build lab1.exe: CXX_EXECUTABLE_LINKER__lab1_Debug CMakeFiles/lab1.dir/App.cpp.obj CMakeFiles/lab1.dir/main.cpp.obj CMakeFiles/lab1.dir/SortedSet.cpp.obj
+build lab1.exe: CXX_EXECUTABLE_LINKER__lab1_Debug CMakeFiles/lab1.dir/App.cpp.obj CMakeFiles/lab1.dir/SortedSet.cpp.obj CMakeFiles/lab1.dir/SortedSetIterator.cpp.obj CMakeFiles/lab1.dir/ShortTest.cpp.obj CMakeFiles/lab1.dir/ExtendedTest.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\lab1.dir

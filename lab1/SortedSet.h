@@ -22,6 +22,7 @@ private:
     TComp *elems;
     Relation r;
 
+    [[nodiscard]] int getIndex(TComp elem) const;
 
 public:
     //constructor
@@ -38,17 +39,16 @@ public:
     bool remove(TComp e);
 
     //checks if an element is in the sorted set
-    bool search(TElem elem) const;
-
+    [[nodiscard]] bool search(TElem elem) const;
 
     //returns the number of elements from the sorted set
-    int size() const;
+    [[nodiscard]] int size() const;
 
     //checks if the sorted set is empty
-    bool isEmpty() const;
+    [[nodiscard]] bool isEmpty() const;
 
     //returns an iterator for the sorted set
-    SortedSetIterator iterator() const;
+    [[nodiscard]] SortedSetIterator iterator() const;
 
     // destructor
     ~SortedSet();

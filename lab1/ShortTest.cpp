@@ -2,6 +2,7 @@
 #include "SortedSet.h"
 #include "SortedSetIterator.h"
 #include <assert.h>
+#include <iostream>
 
 bool r2(TComp e1, TComp e2) {
 	if (e1 <= e2) {
@@ -20,9 +21,9 @@ void testAll() {
 
 	SortedSet s1(r2);
 	assert(s1.add(5) == true);
-	assert(s1.add(1) == true);
-	assert(s1.add(10) == true);
-	SortedSetIterator it1 = s1.iterator();
+    assert(s1.add(1) == true);
+    assert(s1.add(10) == true);
+    SortedSetIterator it1 = s1.iterator();
 	it1.first();
 	e = it1.getCurrent();
 	iverif = 0;
