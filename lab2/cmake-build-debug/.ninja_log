@@ -1,0 +1,20 @@
+# ninja log v5
+4	616	7005929976106660	CMakeFiles/lab2.dir/main.cpp.obj	3c08b87d3797e5f6
+624	760	7005970885060331	lab2.exe	ceefd4c33062d486
+0	231	7005977171660106	build.ninja	d73bb3d418b39bf2
+4	701	7005956759718099	CMakeFiles/lab2.dir/L2_Rautoiu_Mircea_Problem0_length.cpp.obj	177cf5ffae0f1438
+4	704	7005968466623603	CMakeFiles/lab2.dir/L2_Rautoiu_Mircea_Problem0_length_test.cpp.obj	792298ecdbeeb4ca
+19	671	7005968466272084	CMakeFiles/lab2.dir/Duration.cpp.obj	9f7245e0616010a0
+4	623	7005970883729490	CMakeFiles/lab2.dir/L2_Rautoiu_Mircea_Problem2_duration_test.cpp.obj	a9873b900b62b92f
+4	652	7005980024614753	CMakeFiles/lab2.dir/L2_Rautoiu_Mircea_Problem2_Duration.cpp.obj	12675dc1ff1376b4
+11	719	7005980025316534	CMakeFiles/lab2.dir/L2_Rautoiu_Mircea_Problem2_duration_test.cpp.obj	a9873b900b62b92f
+720	882	7005980026900495	lab2.exe	17ccfbe729c3be31
+3	687	7006151633535838	CMakeFiles/lab2.dir/L2_Rautoiu_Mircea_Problem2_duration_test.cpp.obj	a9873b900b62b92f
+687	1001	7006151636662833	lab2.exe	17ccfbe729c3be31
+2	450	7006152166408023	CMakeFiles/lab2.dir/L2_Rautoiu_Mircea_Problem2_duration_test.cpp.obj	a9873b900b62b92f
+450	563	7006152167518275	lab2.exe	17ccfbe729c3be31
+2	433	7006152513833173	CMakeFiles/lab2.dir/L2_Rautoiu_Mircea_Problem2_duration_test.cpp.obj	a9873b900b62b92f
+434	538	7006152514863404	lab2.exe	17ccfbe729c3be31
+3	444	7006162560791003	CMakeFiles/lab2.dir/L2_Rautoiu_Mircea_Problem2_Duration.cpp.obj	12675dc1ff1376b4
+8	460	7006162560971050	CMakeFiles/lab2.dir/L2_Rautoiu_Mircea_Problem2_duration_test.cpp.obj	a9873b900b62b92f
+460	587	7006162562201323	lab2.exe	17ccfbe729c3be31
