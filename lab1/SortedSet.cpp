@@ -28,7 +28,7 @@ bool SortedSet::add(TComp elem) {
 
     // double capacity of array if current capacity is reached
     if (len == cap) {
-        cap *= 2;
+        cap *= GROWTH_FACTOR;
         auto *newElems = new TComp[cap];
         std::copy(elems, elems + len, newElems);
         delete[]elems;
@@ -112,7 +112,7 @@ bool SortedSet::isEmpty() const {
  * @complexity O(1)
  * */
 SortedSetIterator SortedSet::iterator() const {
-    return SortedSetIterator(*this);
+    return {*this};
 }
 
 
