@@ -12,8 +12,6 @@ private:
 
     SortedSetIterator(const SortedSet &m);
 
-    //TODO - Representation
-
 public:
     void first();
 
@@ -21,6 +19,6 @@ public:
 
     TElem getCurrent();
 
-    bool valid() const;
+    [[nodiscard]] bool valid() const;
 };
 

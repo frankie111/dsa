@@ -24,6 +24,8 @@ private:
 
     [[nodiscard]] int getIndex(TComp elem) const;
 
+    void resize();
+
 public:
     //constructor
     explicit SortedSet(Relation r);
@@ -32,7 +34,6 @@ public:
     //if the element was added, the operation returns true, otherwise (if the element was already in the set)
     //it returns false
     bool add(TComp e);
-
 
     //removes an element from the sorted set
     //if the element was removed, it returns true, otherwise false
