@@ -309,13 +309,13 @@ void testQuantity(Relation r) {
 void testAllExtended() {
 
     testCreate(rLessEqual);
-	testAdd();
-	testRemove(rLessEqual);
-	testRemove(rGreater);
-	testIterator(rLessEqual);
-	testIterator(rGreater);
-	testQuantity(rLessEqual);
-	testQuantity(rGreater);
+    testAdd();
+    testRemove(rLessEqual);
+    testRemove(rGreater);
+    testIterator(rLessEqual);
+    testIterator(rGreater);
+    testQuantity(rLessEqual);
+    testQuantity(rGreater);
 
 }
 

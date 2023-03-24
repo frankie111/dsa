@@ -13,6 +13,7 @@ SortedSetIterator::SortedSetIterator(const SortedSet &m) : multime(m) {
     i = 0;
 }
 
+
 /**
  * Set iterator to first position
  * @complexity Ω(1)
@@ -24,6 +25,7 @@ void SortedSetIterator::first() {
         throw std::out_of_range("first(): Index out of range for index " + to_string(i));
     i = 0;
 }
+
 
 /**
  * Increment current position
@@ -37,6 +39,7 @@ void SortedSetIterator::next() {
     }
     i++;
 }
+
 
 /**
  * Return element on current position
@@ -52,6 +55,7 @@ TElem SortedSetIterator::getCurrent() {
 
 //    return NULL_TELEM;
 }
+
 
 /**
  * Check if current index is valid

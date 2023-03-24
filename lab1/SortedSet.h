@@ -7,7 +7,7 @@ typedef TElem TComp;
 
 typedef bool(*Relation)(TComp, TComp);
 
-#define NULL_TELEM -11111
+#define NULL_TELEM (-11111)
 
 class SortedSetIterator;
 
@@ -52,6 +52,5 @@ public:
 
     // destructor
     ~SortedSet();
-
 
 };

@@ -26,7 +26,7 @@ bool SortedSet::add(TComp elem) {
     if (search(elem))
         return false;
 
-    // double capacity of array if current capacity is reached
+    // grow capacity of array if current capacity is reached
     if (len == cap) {
         cap *= GROWTH_FACTOR;
         auto *newElems = new TComp[cap];
@@ -47,7 +47,6 @@ bool SortedSet::add(TComp elem) {
 
         elems[i + 1] = elem;
     }
-
     len++;
 
     return true;
@@ -55,7 +54,10 @@ bool SortedSet::add(TComp elem) {
 
 
 /**
- * Remove elem from set if elem exists
+ * Remove elem from set if elem exists \n
+ *
+ * Find index of elem in set and shift all elements by 1
+ * position to the left
  * @complexity Ω(log n)
  * @complexity θ(log n)
  * @complexity O(n)
@@ -80,9 +82,9 @@ bool SortedSet::remove(TComp elem) {
  * @complexity O(log n)
  * */
 bool SortedSet::search(TComp elem) const {
-//    std::cout << elem << ' ' << getIndex(elem) << std::endl;
     return getIndex(elem) != -1;
 }
+
 
 /**
  * return length of set
@@ -105,8 +107,9 @@ bool SortedSet::isEmpty() const {
     return len == 0;
 }
 
+
 /**
- * return iterator
+ * return an iterator for this set
  * @complexity Ω(1)
  * @complexity θ(1)
  * @complexity O(1)
@@ -117,7 +120,7 @@ SortedSetIterator SortedSet::iterator() const {
 
 
 /**
- * Destructor
+ * Delete elems array
  * @complexity Ω(n)
  * @complexity θ(n)
  * @complexity O(n)
@@ -129,6 +132,8 @@ SortedSet::~SortedSet() {
 
 /**
  * binary search for elem in elems
+ *
+ * @returns index of elem in set or -1 if elem doesn't exist
  * @complexity Ω(1)
  * @complexity θ(log n)
  * @complexity O(log n)
@@ -147,5 +152,4 @@ int SortedSet::getIndex(TComp elem) const {
 
     return -1;
 }
-
 
