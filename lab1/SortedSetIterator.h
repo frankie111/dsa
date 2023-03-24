@@ -10,7 +10,7 @@ private:
     const SortedSet &multime;
     int i;
 
-    SortedSetIterator(const SortedSet &m);
+    explicit SortedSetIterator(const SortedSet &m);
 
 public:
     void first();

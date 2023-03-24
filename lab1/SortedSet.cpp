@@ -51,8 +51,9 @@ bool SortedSet::add(TComp elem) {
  * Grow set if current capacity is reached or
  * shrink set if len \< 1/4 capacity
  *
- * @complexity θ(1)
- * @complexity O(n)
+ * @complexity Best case: θ(1)
+ * @complexity Average case: O(n)
+ * @complexity Worst case: O(n)
  * */
 void SortedSet::resize() {
     if (len == cap)
@@ -73,9 +74,9 @@ void SortedSet::resize() {
  *
  * Find index of elem in set and shift all elements by 1
  * position to the left
- * @complexity Ω(log n)
- * @complexity θ(n)
- * @complexity O(n)
+ * @complexity Best case: Ω(log n)
+ * @complexity Average case: θ(n)
+ * @complexity Worst case: O(n)
  * */
 bool SortedSet::remove(TComp elem) {
     int pos = getIndex(elem);
@@ -126,12 +127,10 @@ bool SortedSet::isEmpty() const {
 
 /**
  * return an iterator for this set
- * @complexity Ω(1)
  * @complexity θ(1)
- * @complexity O(1)
  * */
 SortedSetIterator SortedSet::iterator() const {
-    return {*this};
+    return SortedSetIterator(*this);
 }
 
 
@@ -144,6 +143,7 @@ SortedSetIterator SortedSet::iterator() const {
 SortedSet::~SortedSet() {
     delete[] elems;
 }
+
 
 /**
  * binary search for elem in elems
