@@ -16,7 +16,7 @@ class SortedSet {
     friend class SortedSetIterator;
 
 private:
-    const int GROWTH_FACTOR = 2;
+    static const int GROWTH_FACTOR = 2;
     int cap;
     int len;
     TComp *elems;

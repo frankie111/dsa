@@ -4,9 +4,8 @@
 
 /**
  * Constructor
- * @complexity Ω(1)
+ * @param r relation for sorting the set
  * @complexity θ(1)
- * @complexity O(1)
  * */
 SortedSet::SortedSet(Relation r) {
     cap = 1;
@@ -18,14 +17,17 @@ SortedSet::SortedSet(Relation r) {
 
 /**
  * Add elem to set
- * @complexity Ω(log n)
- * @complexity θ(n)
- * @complexity O(n)
+ * @param elem object of type TComp to be added to the set
+ * @returns true if element was added, false otherwise
+ * @complexityΩ θ(1) \n elem is found in the middle of the set
+ * @complexityθ θ(n)
+ * @complexityO θ(n)
  * */
 bool SortedSet::add(TComp elem) {
     if (search(elem))
         return false;
 
+    // Resize array if needed
     resize();
 
     // Put elem on ordered position
@@ -45,15 +47,16 @@ bool SortedSet::add(TComp elem) {
     return true;
 }
 
+
 /**
  * Resize set: \n
  *
  * Grow set if current capacity is reached or
  * shrink set if len \< 1/4 capacity
  *
- * @complexity Best case: θ(1)
- * @complexity Average case: O(n)
- * @complexity Worst case: O(n)
+ * @complexityΩ θ(1) \n No resize needed
+ * @complexityθ θ(n) \n Performs exactly n steps if resize is needed
+ * @complexityO θ(n) \n Performs exactly n steps if resize is needed
  * */
 void SortedSet::resize() {
     if (len == cap)
@@ -70,13 +73,16 @@ void SortedSet::resize() {
 
 
 /**
- * Remove elem from set if elem exists \n
+ * Remove elem from set \n\n
  *
- * Find index of elem in set and shift all elements by 1
- * position to the left
- * @complexity Best case: Ω(log n)
- * @complexity Average case: θ(n)
- * @complexity Worst case: O(n)
+ * Find index of elem in set and shift all elements after that
+ * by 1 position to the left
+ *
+ * @param elem element to be removed
+ * @returns true if elem was removed, false otherwise
+ * @complexityΩ θ(log n) \n element not found
+ * @complexityθ θ(n)
+ * @complexityO θ(n)
  * */
 bool SortedSet::remove(TComp elem) {
     int pos = getIndex(elem);
@@ -85,6 +91,8 @@ bool SortedSet::remove(TComp elem) {
         for (int i = pos; i < len; i++)
             elems[i] = elems[i + 1];
         len--;
+
+        // Resize if threshold is met
         resize();
         return true;
     }
@@ -93,21 +101,9 @@ bool SortedSet::remove(TComp elem) {
 
 
 /**
- * binary search for elem in elems
- * @complexity Ω(1)
- * @complexity θ(log n)
- * @complexity O(log n)
- * */
-bool SortedSet::search(TComp elem) const {
-    return getIndex(elem) != -1;
-}
-
-
-/**
- * return length of set
- * @complexity Ω(1)
+ * @returns length of set
+ *
  * @complexity θ(1)
- * @complexity O(1)
  * */
 int SortedSet::size() const {
     return len;
@@ -115,10 +111,9 @@ int SortedSet::size() const {
 
 
 /**
- * return 1 if set is empty, 0 otherwise
- * @complexity Ω(1)
+ * return true if set is empty, false otherwise
+ *
  * @complexity θ(1)
- * @complexity O(1)
  * */
 bool SortedSet::isEmpty() const {
     return len == 0;
@@ -135,10 +130,9 @@ SortedSetIterator SortedSet::iterator() const {
 
 
 /**
- * Delete elems array
- * @complexity Ω(n)
- * @complexity θ(n)
- * @complexity O(n)
+ * Destructor
+ *
+ * @complexity θ(n) \n performs exactly n steps
  * */
 SortedSet::~SortedSet() {
     delete[] elems;
@@ -147,11 +141,26 @@ SortedSet::~SortedSet() {
 
 /**
  * binary search for elem in elems
+ * @param elem the element to search for
+ *
+ * @returns true if elem was found, false otherwise
+ * @complexityΩ θ(1) \n elem found at middle position
+ * @complexityθ θ(log n)
+ * @complexityO θ(log n)
+ * */
+bool SortedSet::search(TComp elem) const {
+    return getIndex(elem) != -1;
+}
+
+
+/**
+ * binary search for elem in elems
+ * @param elem the element to search for
  *
  * @returns index of elem in set or -1 if elem doesn't exist
- * @complexity Ω(1)
- * @complexity θ(log n)
- * @complexity O(log n)
+ * @complexityΩ θ(1) \n elem found at middle position
+ * @complexityθ θ(log n)
+ * @complexityO θ(log n)
  * */
 int SortedSet::getIndex(TComp elem) const {
     int low = 0, high = len - 1, mid;

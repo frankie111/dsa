@@ -5,9 +5,7 @@ using namespace std;
 
 /**
  * Constructor
- * @complexity Ω(1)
  * @complexity θ(1)
- * @complexity O(1)
  * */
 SortedSetIterator::SortedSetIterator(const SortedSet &m) : multime(m) {
     i = 0;
@@ -16,22 +14,20 @@ SortedSetIterator::SortedSetIterator(const SortedSet &m) : multime(m) {
 
 /**
  * Set iterator to first position
- * @complexity Ω(1)
+ * throws out_of_range exception if set is empty
  * @complexity θ(1)
- * @complexity O(1)
  * */
 void SortedSetIterator::first() {
     if (multime.isEmpty())
-        throw std::out_of_range("first(): Index out of range for index " + to_string(i));
+        throw std::out_of_range("first(): Index out of range for index 0");
     i = 0;
 }
 
 
 /**
  * Increment current position
- * @complexity Ω(1)
+ * @throws out_of_range exception if next index is invalid
  * @complexity θ(1)
- * @complexity O(1)
  * */
 void SortedSetIterator::next() {
     if (!valid()) {
@@ -42,10 +38,9 @@ void SortedSetIterator::next() {
 
 
 /**
- * Return element on current position
- * @complexity Ω(1)
+ * @returns element on current position
+ * @throws out_of_range exception if index is invalid
  * @complexity θ(1)
- * @complexity O(1)
  * */
 TElem SortedSetIterator::getCurrent() {
     if (valid())
@@ -53,15 +48,15 @@ TElem SortedSetIterator::getCurrent() {
     else
         throw std::out_of_range("getCurrent(): Index out of range for index " + to_string(i));
 
-//    return NULL_TELEM;
+    return NULL_TELEM;
 }
 
 
 /**
  * Check if current index is valid
- * @complexity Ω(1)
+ *
+ * @returns true if index is valid, false otherwise
  * @complexity θ(1)
- * @complexity O(1)
  * */
 bool SortedSetIterator::valid() const {
     if (multime.isEmpty())
