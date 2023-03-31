@@ -14,6 +14,7 @@ class SortedSetIterator;
 
 class SortedSet {
     friend class SortedSetIterator;
+    friend class ExtendedIterator;
 
 private:
     static const int GROWTH_FACTOR = 2;
