@@ -1,6 +1,7 @@
 #pragma once
 
 #include "MultiMap.h"
+#include "ValueIterator.h"
 
 class MultiMap;
 
@@ -10,12 +11,12 @@ class MultiMapIterator {
 private:
     const MultiMap &col;
     Node *currentNode;
-    ValueNode *currentVNode;
+    ValueIterator valueIterator;
 
-
-    explicit MultiMapIterator(const MultiMap &c);
 
 public:
+    explicit MultiMapIterator(const MultiMap &c);
+
     [[nodiscard]] TElem getCurrent() const;
 
     [[nodiscard]] bool valid() const;

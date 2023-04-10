@@ -2,25 +2,32 @@
 #include "MultiMap.h"
 
 
-MultiMapIterator::MultiMapIterator(const MultiMap& c): col(c) {
-	//TODO - Implementation
+MultiMapIterator::MultiMapIterator(const MultiMap &c) : col(c) {
+    currentNode = col.head;
+    if (currentNode != nullptr)
+        valueIterator = ValueIterator(col.head->info);
 }
 
-TElem MultiMapIterator::getCurrent() const{
-	//TODO - Implementation
-	return NULL_TELEM;
+TElem MultiMapIterator::getCurrent() const {
+    TKey key = currentNode->key;
+    TValue val = currentVNode->value;
+
+    return {key, val};
 }
 
 bool MultiMapIterator::valid() const {
-	//TODO - Implementation
-	return false;
+    if (currentNode == nullptr)
+        return false;
+
+    return true;
 }
 
 void MultiMapIterator::next() {
-	//TODO - Implementation
+
 }
 
 void MultiMapIterator::first() {
-	//TODO - Implementation
+    currentNode = col.head;
+    currentVNode = col.head->info;
 }
 

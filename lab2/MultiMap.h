@@ -9,15 +9,15 @@ using namespace std;
 //DO NOT CHANGE THIS PART
 typedef int TKey;
 typedef int TValue;
-typedef int TElem;
-//typedef std::pair<TKey, TValue> TElem;
+//typedef int TElem;
+typedef std::pair<TKey, TValue> TElem;
 #define NULL_TVALUE -111111
 #define NULL_TELEM pair<int,int>(-111111, -111111)
 
 class MultiMapIterator;
 
 struct ValueNode {
-    TElem value{NULL_TVALUE};
+    TValue value{NULL_TVALUE};
     ValueNode *next{nullptr};
 };
 
