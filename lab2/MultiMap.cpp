@@ -88,19 +88,22 @@ bool MultiMap::remove(TKey k, TValue v) {
  * @complexity θ(n)
  */
 void MultiMap::removeNode(Node *node) {
-    Node *last = head;
-    Node *current = head->next;
+    Node *prev = nullptr;
+    for (Node *curr = head; curr != nullptr; curr = curr->next) {
+        if (curr == node)
+            break;
 
-    do {
-        if (current == node) {
-            last->next = current->next;
-            delete current;
-            return;
-        }
+        prev = curr;
+    }
 
-        last = current;
-        current = current->next;
-    } while (current->next != nullptr);
+    // if the node to remove is the head node, update the head
+    if (prev == nullptr) {
+        head = node->next;
+    } else {
+        prev->next = node->next;
+    }
+
+    delete node;
 }
 
 /**
@@ -111,8 +114,28 @@ void MultiMap::removeNode(Node *node) {
  * @complexity θ(n)
  */
 bool MultiMap::removeValueFromNode(Node *node, TValue v) {
+    ValueNode *prev = nullptr;
+    ValueNode *curr;
+    for (curr = node->info; curr != nullptr; curr = curr->next) {
+        if (curr->value == v)
+            break;
 
-    return false;
+        prev = curr;
+    }
+
+    // Value wasn't found
+    if (curr == nullptr)
+        return false;
+
+    // if the value to remove is found in the head ValueNode, update the head
+    if (prev == nullptr)
+        node->info = curr->next;
+    else {
+        prev->next = curr->next;
+    }
+
+    delete curr;
+    return true;
 }
 
 /**
@@ -129,7 +152,7 @@ vector<TValue> MultiMap::search(TKey k) const {
         return result;
 
     ValueNode *vNode = aux->info;
-    while (vNode->next != nullptr) {
+    while (vNode != nullptr) {
         result.push_back(vNode->value);
         vNode = vNode->next;
     }
@@ -251,5 +274,9 @@ void MultiMap::printValues(Node *node) {
         vNode = vNode->next;
     }
 
+}
+
+MultiMapIterator MultiMap::iterator() const {
+    return MultiMapIterator(MultiMap());
 }
 
