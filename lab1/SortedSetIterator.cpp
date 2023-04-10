@@ -18,7 +18,7 @@ SortedSetIterator::SortedSetIterator(const SortedSet &m) : multime(m) {
  * @complexity θ(1)
  * */
 void SortedSetIterator::first() {
-    if (multime.isEmpty())`
+    if (multime.isEmpty())
         throw std::out_of_range("first(): Index out of range for index 0");
     i = 0;
 }

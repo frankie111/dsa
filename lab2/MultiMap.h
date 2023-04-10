@@ -17,14 +17,14 @@ typedef int TElem;
 class MultiMapIterator;
 
 struct ValueNode {
-    TElem value;
-    ValueNode *next;
+    TElem value{NULL_TVALUE};
+    ValueNode *next{nullptr};
 };
 
 struct Node {
-    TKey key;
-    ValueNode *info;
-    Node *next;
+    TKey key{0};
+    ValueNode *info{nullptr};
+    Node *next{nullptr};
 };
 
 class MultiMap {
@@ -33,20 +33,37 @@ class MultiMap {
 private:
     Node *head;
 
+    //returns a pointer to node with specific key or nullptr
+    [[nodiscard]] Node *searchNode(TKey k) const;
+
+    void addNewKey(TKey k, TValue v);
+
+    static void addValueToEnd(Node *node, TValue v);
+
+    static bool removeValueFromNode(Node *node, TValue v);
+
+    void removeNode(Node *node);
+
+    //delete all values from a node
+    static void deleteValues(Node *node);
+
+    static void printValues(Node* node);
+
+    static int countValues(Node* node) ;
 
 public:
     //constructor
     MultiMap();
 
     //adds a key value pair to the multimap
-    void add(TKey c, TValue v);
+    void add(TKey k, TValue v);
 
     //removes a key value pair from the multimap
     //returns true if the pair was removed (if it was in the multimap) and false otherwise
-    bool remove(TKey c, TValue v);
+    bool remove(TKey k, TValue v);
 
     //returns the vector of values associated to a key. If the key is not in the MultiMap, the vector is empty
-    [[nodiscard]] vector<TValue> search(TKey c) const;
+    [[nodiscard]] vector<TValue> search(TKey k) const;
 
     //returns the number of pairs from the multimap
     [[nodiscard]] int size() const;
@@ -57,9 +74,10 @@ public:
     //returns an iterator for the multimap
     [[nodiscard]] MultiMapIterator iterator() const;
 
+    void print() const;
+
     //descturctor
     ~MultiMap();
-
 
 };
 

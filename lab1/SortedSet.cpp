@@ -55,7 +55,7 @@ bool SortedSet::add(TComp elem) {
  * shrink set if len \< 1/4 capacity
  *
  * @complexityΩ θ(1) \n No resize needed
- * @complexityθ θ(1) \n amortised costs
+ * @complexityθ θ(n) \n
  * @complexityO θ(n) \n Performs exactly n steps if resize is needed
  * */
 void SortedSet::resize() {

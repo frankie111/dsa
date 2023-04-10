@@ -1,15 +1,8 @@
 # ninja log v5
-458	591	7019709300198651	lab1.exe	de3dc17ecf90664f
-22	860	7019666422140698	CMakeFiles/lab1.dir/App.cpp.obj	4c0cbdf722fa39eb
-2	447	7019709298778713	CMakeFiles/lab1.dir/SortedSet.cpp.obj	7242042ce0c0cfd1
-6	417	7019709298478653	CMakeFiles/lab1.dir/SortedSetIterator.cpp.obj	a015362a96762b6a
-12	432	7019709298628677	CMakeFiles/lab1.dir/ShortTest.cpp.obj	5738bc5933688d77
-9	458	7019709298878734	CMakeFiles/lab1.dir/ExtendedTest.cpp.obj	1729d75f3b523f51
-4	172	7019782899542344	CMakeFiles/lab1.dir/ExtendedIterator.cpp.obj	3d72813835c01dd5
-172	566	7019782903451231	lab1.exe	68978ddc907c7af2
-23	725	7019816094171404	CMakeFiles/lab1.dir/ShortTest.cpp.obj	5738bc5933688d77
-10	727	7019816094191410	CMakeFiles/lab1.dir/SortedSet.cpp.obj	7242042ce0c0cfd1
-14	743	7019816094343074	CMakeFiles/lab1.dir/ExtendedIterator.cpp.obj	3d72813835c01dd5
-3	749	7019816094403182	CMakeFiles/lab1.dir/SortedSetIterator.cpp.obj	a015362a96762b6a
-19	764	7019816094553214	CMakeFiles/lab1.dir/ExtendedTest.cpp.obj	1729d75f3b523f51
 764	1089	7019816097779893	lab1.exe	68978ddc907c7af2
+22	860	7019666422140698	CMakeFiles/lab1.dir/App.cpp.obj	4c0cbdf722fa39eb
+15	668	7024847724007865	CMakeFiles/lab1.dir/SortedSet.cpp.obj	7242042ce0c0cfd1
+3	749	7019816094403182	CMakeFiles/lab1.dir/SortedSetIterator.cpp.obj	a015362a96762b6a
+23	725	7019816094171404	CMakeFiles/lab1.dir/ShortTest.cpp.obj	5738bc5933688d77
+14	743	7019816094343074	CMakeFiles/lab1.dir/ExtendedIterator.cpp.obj	3d72813835c01dd5
+19	764	7019816094553214	CMakeFiles/lab1.dir/ExtendedTest.cpp.obj	1729d75f3b523f51
