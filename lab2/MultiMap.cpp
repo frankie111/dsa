@@ -16,9 +16,9 @@ MultiMap::MultiMap() {
 
 /**
  * Add a key-value pair to the multimap.
- * If the key is found, append to node, else create a new node.
- * @param k key of node to be created/modified
- * @param v value to be added to new/modified node
+ * If the key is found, append to currentNode, else create a new currentNode.
+ * @param k key of currentNode to be created/modified
+ * @param v value to be added to new/modified currentNode
  * @complexity θ(n)
  * */
 void MultiMap::add(TKey k, TValue v) {
@@ -30,9 +30,9 @@ void MultiMap::add(TKey k, TValue v) {
 }
 
 /**
- * Add a new key/node to the multimap
- * @param k key to be added to new node
- * @param v value to be added to new node
+ * Add a new key/currentNode to the multimap
+ * @param k key to be added to new currentNode
+ * @param v value to be added to new currentNode
  * @complexity θ(n)
  */
 void MultiMap::addNewKey(TKey k, TValue v) {
@@ -49,9 +49,9 @@ void MultiMap::addNewKey(TKey k, TValue v) {
 }
 
 /**
- * Add a new value to an existing node
+ * Add a new value to an existing currentNode
  * @param node to be edited
- * @param v value to be added to node
+ * @param v value to be added to currentNode
  * @complexity θ(n)
  */
 void MultiMap::addValueToEnd(Node *node, TValue v) {
@@ -64,9 +64,9 @@ void MultiMap::addValueToEnd(Node *node, TValue v) {
 
 /**
  * Removes a key-value pair from the multimap.
- * If the node doesn't have a value associated, node gets removed.
+ * If the currentNode doesn't have a value associated, currentNode gets removed.
  * @returns true if the pair was removed, false otherwise
- * @param k key of node to be removed/modified
+ * @param k key of currentNode to be removed/modified
  * @param v value to be removed
  * @complexity θ(n)
  */
@@ -83,7 +83,7 @@ bool MultiMap::remove(TKey k, TValue v) {
 }
 
 /**
- * Remove a node from the multimap
+ * Remove a currentNode from the multimap
  * @param node to be removed
  * @complexity θ(n)
  */
@@ -96,7 +96,7 @@ void MultiMap::removeNode(Node *node) {
         prev = curr;
     }
 
-    // if the node to remove is the head node, update the head
+    // if the currentNode to remove is the head currentNode, update the head
     if (prev == nullptr) {
         head = node->next;
     } else {
@@ -107,7 +107,7 @@ void MultiMap::removeNode(Node *node) {
 }
 
 /**
- * Remove a value from a node if found
+ * Remove a value from a currentNode if found
  * @param node to modify
  * @param v value to be removed
  * @returns true if value was removed, false otherwise
@@ -161,9 +161,9 @@ vector<TValue> MultiMap::search(TKey k) const {
 }
 
 /**
- * Search a node by it's key
+ * Search a currentNode by it's key
  * @param k key to look for
- * @returns a pointer to the found node or nullptr
+ * @returns a pointer to the found currentNode or nullptr
 * @complexity θ(n)
  */
 Node *MultiMap::searchNode(TKey k) const {
@@ -231,7 +231,7 @@ MultiMap::~MultiMap() {
 }
 
 /**
- * Delete all values from node
+ * Delete all values from currentNode
  * @param node
  * @complexity θ(n)
  */
@@ -263,7 +263,7 @@ void MultiMap::print() const {
 }
 
 /**
- * Print values of specific node
+ * Print values of specific currentNode
  * @param node
  */
 void MultiMap::printValues(Node *node) {
@@ -277,6 +277,6 @@ void MultiMap::printValues(Node *node) {
 }
 
 MultiMapIterator MultiMap::iterator() const {
-    return MultiMapIterator(MultiMap());
+    return MultiMapIterator(*this);
 }
 

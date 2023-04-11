@@ -11,10 +11,11 @@ class MultiMapIterator {
 private:
     const MultiMap &col;
     Node *currentNode;
-    ValueIterator valueIterator;
+    ValueIterator valueIterator{};
 
 
 public:
+
     explicit MultiMapIterator(const MultiMap &c);
 
     [[nodiscard]] TElem getCurrent() const;

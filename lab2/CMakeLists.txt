@@ -3,4 +3,4 @@ project(lab2)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(lab2 main.cpp MultiMap.h MultiMap.cpp MultiMapIterator.cpp ValueIterator.cpp ValueIterator.h)
+add_executable(lab2 App.cpp MultiMap.h MultiMap.cpp MultiMapIterator.cpp ValueIterator.cpp ValueIterator.h ShortTest.cpp ExtendedTest.cpp)

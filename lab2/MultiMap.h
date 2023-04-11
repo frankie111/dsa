@@ -33,7 +33,7 @@ class MultiMap {
 private:
     Node *head;
 
-    //returns a pointer to node with specific key or nullptr
+    //returns a pointer to currentNode with specific key or nullptr
     [[nodiscard]] Node *searchNode(TKey k) const;
 
     void addNewKey(TKey k, TValue v);
@@ -44,7 +44,7 @@ private:
 
     void removeNode(Node *node);
 
-    //delete all values from a node
+    //delete all values from a currentNode
     static void deleteValues(Node *node);
 
     static void printValues(Node* node);

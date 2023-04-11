@@ -4,21 +4,29 @@
 
 #include "MultiMap.h"
 
+using namespace std;
+
 class ValueIterator {
 private:
     friend class MultiMap;
+
+    Node *currentNode;
     ValueNode *currentVNode;
 
 public:
-    explicit ValueIterator(ValueNode *valueNode);
+    ValueIterator() = default;
 
-    TValue getCurrent() const;
+    explicit ValueIterator(Node *node);
 
-    bool valid() const;
+    [[nodiscard]] TValue getCurrent() const;
+
+    [[nodiscard]] bool valid() const;
 
     void next();
 
     void first();
+
+    void setCurrentNode(Node *node);
 };
 
 
