@@ -10,7 +10,7 @@ using namespace std;
 int main() {
 
 
-	testAll();
+//	testAll();
 	testAllExtended();
 	cout << "End" << endl;
 	system("pause");

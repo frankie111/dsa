@@ -6,34 +6,37 @@
 MultiMapIterator::MultiMapIterator(const MultiMap &c) : col(c) {
     currentNode = col.head;
     if (currentNode != nullptr)
-        valueIterator = ValueIterator(col.head);
+        currentVNode = currentNode->info;
 }
 
 TElem MultiMapIterator::getCurrent() const {
     if (!valid())
-        throw out_of_range("MultiMapIterator::getCurrent(): Node out of range");
+        throw out_of_range("MultiMapIterator::getCurrent(): Invalid Node");
 
     TKey key = currentNode->key;
-    TValue val = valueIterator.getCurrent();
+    TValue val = currentVNode->value;
 
     return {key, val};
 }
 
-bool MultiMapIterator::valid() const {
-    return currentNode != nullptr;
-}
-
 void MultiMapIterator::next() {
-    valueIterator.next();
-    if (!valueIterator.valid()) {
+    if (!valid())
+        throw out_of_range("MultiMapIterator::next(): Invalid Node");
+
+    currentVNode = currentVNode->next;
+    if (currentVNode == nullptr) {
         currentNode = currentNode->next;
-        if (currentNode != nullptr)
-            valueIterator.setCurrentNode(currentNode);
+        if (valid())
+            currentVNode = currentNode->info;
     }
 }
 
 void MultiMapIterator::first() {
     currentNode = col.head;
-    valueIterator.first();
+    if (currentNode != nullptr)
+        currentVNode = currentNode->info;
 }
 
+bool MultiMapIterator::valid() const {
+    return currentNode != nullptr;
+}
