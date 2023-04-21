@@ -39,12 +39,17 @@ void MultiMap::addNewKey(TKey k, TValue v) {
     if (head == nullptr)
         head = new Node(k, new ValueNode(v, nullptr), nullptr);
     else {
-        Node *newNode = new Node(k, new ValueNode(v, nullptr), nullptr);
-        Node *tail = head;
-        while (tail->next != nullptr)
-            tail = tail->next;
+        // Add new node right after head
+        Node *newNode = new Node(k, new ValueNode(v, nullptr), head->next);
+        head->next = newNode;
 
-        tail->next = newNode;
+//        // Add node at the end of the MultiMap
+//        Node *newNode = new Node(k, new ValueNode(v, nullptr), nullptr);
+//        Node *tail = head;
+//        while (tail->next != nullptr)
+//            tail = tail->next;
+//
+//        tail->next = newNode;
     }
 }
 
