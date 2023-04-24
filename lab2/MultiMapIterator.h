@@ -9,8 +9,8 @@ class MultiMapIterator {
 
 private:
     const MultiMap &col;
-    Node *currentNode;
-    ValueNode *currentVNode;
+    Node *currentNode{};
+    ValueNode *currentVNode{};
 
 public:
 

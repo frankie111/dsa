@@ -26,7 +26,7 @@ void MultiMap::add(TKey k, TValue v) {
     if (aux == nullptr)
         addNewKey(k, v);
     else
-        addValueToEnd(aux, v);
+        addValue(aux, v);
 }
 
 /**
@@ -42,29 +42,19 @@ void MultiMap::addNewKey(TKey k, TValue v) {
         // Add new node right after head
         Node *newNode = new Node(k, new ValueNode(v, nullptr), head->next);
         head->next = newNode;
-
-//        // Add node at the end of the MultiMap
-//        Node *newNode = new Node(k, new ValueNode(v, nullptr), nullptr);
-//        Node *tail = head;
-//        while (tail->next != nullptr)
-//            tail = tail->next;
-//
-//        tail->next = newNode;
     }
 }
 
 /**
- * Add a new value to an existing currentNode
+ * Add a new value to an existing Node
  * @param node to be edited
- * @param v value to be added to currentNode
+ * @param v value to be added to Node
  * @complexity θ(n)
  */
-void MultiMap::addValueToEnd(Node *node, TValue v) {
+void MultiMap::addValue(Node *node, TValue v) {
     ValueNode *vNode = node->info;
-    while (vNode->next != nullptr)
-        vNode = vNode->next;
-
-    vNode->next = new ValueNode(v, nullptr);
+    auto *newNode = new ValueNode(v, vNode->next);
+    vNode->next = newNode;
 }
 
 /**
@@ -88,31 +78,7 @@ bool MultiMap::remove(TKey k, TValue v) {
 }
 
 /**
- * Remove a currentNode from the multimap
- * @param node to be removed
- * @complexity θ(n)
- */
-void MultiMap::removeNode(Node *node) {
-    Node *prev = nullptr;
-    for (Node *curr = head; curr != nullptr; curr = curr->next) {
-        if (curr == node)
-            break;
-
-        prev = curr;
-    }
-
-    // if the currentNode to remove is the head currentNode, update the head
-    if (prev == nullptr) {
-        head = node->next;
-    } else {
-        prev->next = node->next;
-    }
-
-    delete node;
-}
-
-/**
- * Remove a value from a currentNode if found
+ * Remove a value from a Node if found
  * @param node to modify
  * @param v value to be removed
  * @returns true if value was removed, false otherwise
@@ -141,6 +107,30 @@ bool MultiMap::removeValueFromNode(Node *node, TValue v) {
 
     delete curr;
     return true;
+}
+
+/**
+ * Remove a Node from the multimap
+ * @param node to be removed
+ * @complexity θ(n)
+ */
+void MultiMap::removeNode(Node *node) {
+    Node *prev = nullptr;
+    for (Node *curr = head; curr != nullptr; curr = curr->next) {
+        if (curr == node)
+            break;
+
+        prev = curr;
+    }
+
+    // if the currentNode to remove is the head currentNode, update the head
+    if (prev == nullptr) {
+        head = node->next;
+    } else {
+        prev->next = node->next;
+    }
+
+    delete node;
 }
 
 /**
@@ -198,6 +188,10 @@ int MultiMap::size() const {
     return ct;
 }
 
+/**
+ * @returns the number of values associated to a node
+ * @param node
+ */
 int MultiMap::countValues(Node *node) {
     ValueNode *vNode = node->info;
     int ct = 0;
@@ -208,9 +202,6 @@ int MultiMap::countValues(Node *node) {
     return ct;
 }
 
-//MultiMapIterator MultiMap::iterator() const {
-//    return MultiMapIterator(*this);
-
 /**
  * Check whether the multimap is empty
  * @returns true if head is null, false otherwise
@@ -218,35 +209,6 @@ int MultiMap::countValues(Node *node) {
  */
 bool MultiMap::isEmpty() const {
     return head == nullptr;
-}
-
-//}
-
-/**
- * Destructor
- * @complexity θ(n)
- */
-MultiMap::~MultiMap() {
-    while (head != nullptr) {
-        Node *aux = head;
-        head = head->next;
-        deleteValues(aux);
-        delete aux;
-    }
-}
-
-/**
- * Delete all values from currentNode
- * @param node
- * @complexity θ(n)
- */
-void MultiMap::deleteValues(Node *node) {
-    ValueNode *vNode = node->info;
-    while (vNode != nullptr) {
-        ValueNode *aux = vNode;
-        vNode = vNode->next;
-        delete aux;
-    }
 }
 
 /**
@@ -281,7 +243,38 @@ void MultiMap::printValues(Node *node) {
 
 }
 
+/**
+ * @returns an iterator for this MultiMap
+ * @complexity θ(1)
+ */
 MultiMapIterator MultiMap::iterator() const {
     return MultiMapIterator(*this);
+}
+
+/**
+ * Delete all values from currentNode
+ * @param node
+ * @complexity θ(n)
+ */
+void MultiMap::deleteValues(Node *node) {
+    ValueNode *vNode = node->info;
+    while (vNode != nullptr) {
+        ValueNode *aux = vNode;
+        vNode = vNode->next;
+        delete aux;
+    }
+}
+
+/**
+ * Destructor
+ * @complexity θ(n)
+ */
+MultiMap::~MultiMap() {
+    while (head != nullptr) {
+        Node *aux = head;
+        head = head->next;
+        deleteValues(aux);
+        delete aux;
+    }
 }
 

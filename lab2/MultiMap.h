@@ -38,7 +38,7 @@ private:
 
     void addNewKey(TKey k, TValue v);
 
-    static void addValueToEnd(Node *node, TValue v);
+    static void addValue(Node *node, TValue v);
 
     static bool removeValueFromNode(Node *node, TValue v);
 
