@@ -134,6 +134,60 @@ void MultiMap::removeNode(Node *node) {
 }
 
 /**
+ * Removes a node and all it's associated values
+ * @param k key to be searched
+ * @return true if the node was found and removed, false otherwise
+ * @complexity θ(n)
+ *
+ * function removeNodeValues(mm, k) is:
+ * ------------------------------------------------------------------
+ *  //pre:
+ *      mm ist ein MultiMap
+ *      k ist ein Tkey
+ *  //post:
+ *      Der Knoten mit dem Key = k aus mm wird gelöscht zusammen mit
+ *      sein SLL von Value Knoten
+ *
+ *      Wahr falls der Knoten gefunden wurde, falsch ansonsten
+ *-------------------------------------------------------------------
+ *      currNode <- searchNode(mm, k)
+ *      if currNode = NIL then
+ *          removeNodeValues <- false
+ *      endif
+ *
+ *      vNode <- currNode.info
+ *      while vNode != NIL
+ *          aux <- vNode;
+ *          vNode <- vNode.next
+ *          free(aux)
+ *      endwhile
+ *
+ *      removeNode(currNode)
+ *      removeNodeValues <- true
+ *
+ * end_function
+ *
+ */
+bool MultiMap::removeNodeValues(TKey k) {
+    Node *currNode = searchNode(k);
+    if (currNode == nullptr)
+        return false;
+
+    // Delete all values from the current node
+    ValueNode *vNode = currNode->info;
+    while (vNode != nullptr) {
+        ValueNode *aux = vNode;
+        vNode = vNode->next;
+        delete aux;
+    }
+
+    //Delete the current node
+    removeNode(currNode);
+
+    return true;
+}
+
+/**
  * @returns the vector of values associated to a key.
  * If the key is not found, the vector is empty.
  * @param k key to look for

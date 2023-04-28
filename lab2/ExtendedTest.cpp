@@ -348,11 +348,30 @@ void testQuantity() {
     assert(im.valid() == false);
 }
 
+void testRemoveNodeValues() {
+    cout << "Test Remove Node Values" << endl;
+    MultiMap m;
+    m.add(1, 1);
+
+    for (int i = 0; i < 10; i++)
+        m.add(2, i);
+
+    m.add(3, 3);
+
+    assert(m.size() == 12);
+
+    m.removeNodeValues(2);
+
+    assert(m.size() == 2);
+    assert(m.search(2).empty());
+}
+
 
 void testAllExtended() {
-	testCreate();
-	testAdd();
-	testRemove();
+    testCreate();
+    testAdd();
+    testRemove();
+    testRemoveNodeValues();
     testIterator();
     testQuantity();
 }

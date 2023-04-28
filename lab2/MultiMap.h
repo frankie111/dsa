@@ -47,9 +47,9 @@ private:
     //delete all values from a currentNode
     static void deleteValues(Node *node);
 
-    static void printValues(Node* node);
+    static void printValues(Node *node);
 
-    static int countValues(Node* node) ;
+    static int countValues(Node *node);
 
 public:
     //constructor
@@ -61,6 +61,9 @@ public:
     //removes a key value pair from the multimap
     //returns true if the pair was removed (if it was in the multimap) and false otherwise
     bool remove(TKey k, TValue v);
+
+    //removes a Node and all the values associated with it
+    bool removeNodeValues(TKey k);
 
     //returns the vector of values associated to a key. If the key is not in the MultiMap, the vector is empty
     [[nodiscard]] vector<TValue> search(TKey k) const;
