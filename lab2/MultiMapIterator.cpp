@@ -52,7 +52,7 @@ void MultiMapIterator::first() {
 }
 
 /**
- * @returns true if the current node is valid, false otherwise
+ * @returns true if the current Node is valid, false otherwise
  * @complexity θ(1)
  */
 bool MultiMapIterator::valid() const {
