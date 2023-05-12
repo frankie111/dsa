@@ -1,4 +1,4 @@
-D:\Programs\apps\CLion\ch-0\231.8109.222\bin\cmake\win\x64\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=D:/Programs/apps/CLion/ch-0/231.8109.222/bin/ninja/win/x64/ninja.exe -G Ninja -S D:\Dev\sda\lab1 -B D:\Dev\sda\lab1\cmake-build-debug
+D:\Programs\apps\CLion\ch-0\231.8109.222\bin\cmake\win\x64\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=D:/Programs/apps/CLion/ch-0/231.8109.222/bin/ninja/win/x64/ninja.exe -G Ninja -S D:\Dev\dsa\lab1 -B D:\Dev\dsa\lab1\cmake-build-debug
 -- The C compiler identification is GNU 11.2.0
 -- The CXX compiler identification is GNU 11.2.0
 -- Detecting C compiler ABI info
@@ -13,4 +13,4 @@ D:\Programs\apps\CLion\ch-0\231.8109.222\bin\cmake\win\x64\bin\cmake.exe -DCMAKE
 -- Detecting CXX compile features - done
 -- Configuring done
 -- Generating done
--- Build files have been written to: D:/Dev/sda/lab1/cmake-build-debug
+-- Build files have been written to: D:/Dev/dsa/lab1/cmake-build-debug

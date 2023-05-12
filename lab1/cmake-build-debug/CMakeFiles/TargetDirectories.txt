@@ -1,3 +1,3 @@
-D:/Dev/sda/lab1/cmake-build-debug/CMakeFiles/lab1.dir
-D:/Dev/sda/lab1/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/Dev/sda/lab1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+D:/Dev/dsa/lab1/cmake-build-debug/CMakeFiles/lab1.dir
+D:/Dev/dsa/lab1/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/Dev/dsa/lab1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
