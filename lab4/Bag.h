@@ -18,7 +18,11 @@ class Bag {
 private:
     Item *table; // Dynamic array of bag items
     int tableSize; // Size of dynamic array
-    int count; // Number of elements in bag
+    int itemCount; // Number of distinct items in bag
+    int elementCount; // Number of elements in bag
+
+    const int GROWTH_FACTOR = 2;
+    const double MAX_LOAD_FACTOR = 0.75;
 
     //DO NOT CHANGE THIS PART
     friend class BagIterator;
@@ -34,24 +38,27 @@ public:
     //adds an element to the bag
     void add(TElem e);
 
-    //removes one occurence of an element from a bag
+    //removes one occurrence of an element from a bag
     //returns true if an element was removed, false otherwise (if e was not part of the bag)
     bool remove(TElem e);
 
-    //checks if an element appearch is the bag
-    bool search(TElem e) const;
+    //checks if an element appears is the bag
+    [[nodiscard]] bool search(TElem e) const;
 
     //returns the number of occurrences for an element in the bag
-    int nrOccurrences(TElem e) const;
+    [[nodiscard]] int nrOccurrences(TElem e) const;
 
     //returns the number of elements from the bag
-    int size() const;
+    [[nodiscard]] int size() const;
+
+    //returns the number of distinct items from the bag
+    [[nodiscard]] int getItemCount() const;
 
     //returns an iterator for this bag
-    BagIterator iterator() const;
+    [[nodiscard]] BagIterator iterator() const;
 
     //checks if the bag is empty
-    bool isEmpty() const;
+    [[nodiscard]] bool isEmpty() const;
 
     //destructor
     ~Bag();

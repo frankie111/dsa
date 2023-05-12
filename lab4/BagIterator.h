@@ -7,7 +7,7 @@ class BagIterator {
 private:
     const Bag &bag;
     int currentPos; // Current position in bag
-    int currentCount; // Current count of element at currentPos
+    int currentCount; // Current elementCount of element at currentPos
 
     explicit BagIterator(const Bag &c);
 

@@ -10,22 +10,38 @@ BagIterator::BagIterator(const Bag &c) : bag(c) {
     currentCount = 0;
 }
 
+
 void BagIterator::first() {
-    //TODO - Implementation
+    currentPos = 0;
+    currentCount = 0;
 }
 
 
 void BagIterator::next() {
-    //TODO - Implementation
+    if (!valid())
+        throw out_of_range("BagIterator::next: Invalid iterator!");
+
+    if (currentCount < bag.table[currentPos].ct - 1)
+        currentCount++;
+    else {
+        currentPos++;
+        currentCount = 0;
+
+        // Skip empty positions
+        while (currentPos < bag.tableSize && bag.table[currentPos].ct == 0)
+            currentPos++;
+    }
 }
 
 
 TElem BagIterator::getCurrent() const {
-    //TODO - Implementation
-    return NULL_TELEM;
+    if (!valid())
+        throw out_of_range("BagIterator::getCurrent: Invalid iterator!");
+
+    return bag.table[currentPos].value;
 }
 
 
 bool BagIterator::valid() const {
-    return currentPos >= 0 && currentPos < bag.tableSize;
+    return currentPos >= 0 && currentPos < bag.tableSize && currentCount < bag.table[currentPos].ct;
 }

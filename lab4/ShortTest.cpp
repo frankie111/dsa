@@ -7,7 +7,7 @@
 void testAll() { 
 	Bag b;
 	assert(b.isEmpty() == true);
-	assert(b.size() == 0); 
+	assert(b.size() == 0);
 	b.add(5);
 	b.add(1);
 	b.add(10);
