@@ -100,7 +100,8 @@ void testRemove() {
         b.add(i);
     }
 
-    assert(b.remove(-94));
+//    b.printTable();
+
     for (int i = -100; i < 100; i++) {
         if (i % 2 == 0) {
             assert(b.remove(i) == true);
@@ -358,8 +359,8 @@ void testQuantity() {
 
 void testAllExtended() {
 //	testCreate();
-	testAdd();
-//    testRemove();
+//	testAdd();
+    testRemove();
 //	testIterator();
 //	testQuantity();
 }

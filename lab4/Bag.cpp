@@ -80,7 +80,6 @@ bool Bag::remove(TElem e) {
         cout << 1 << " -> " << e << endl;
         return true;
     }
-
     cout << 0 << " -> " << e << endl;
     return false;
 }
@@ -104,7 +103,7 @@ bool Bag::search(TElem e) const {
 
 int Bag::hash(TElem e, int probe) const {
     double c1 = 0.5, c2 = 0.5;
-    int h1 = e % tableSize;
+    int h1 = abs(e) % tableSize;
     return (int) (h1 + c1 * probe + c2 * probe * probe) % tableSize;
 }
 
@@ -149,7 +148,7 @@ void Bag::resize(int capacity) {
             int probe, index;
 
             // Find first empty position
-            for(probe = 0; probe < newTableSize; probe++) {
+            for (probe = 0; probe < newTableSize; probe++) {
                 index = hash(table[i].value, probe);
 
                 if (newTable[index].value == NULL_TELEM)
@@ -170,3 +169,49 @@ Bag::~Bag() {
     delete[]table;
 }
 
+void Bag::printTable() const {
+    int ct = 0;
+    for (int i = 0; i < tableSize; i++) {
+        if (table[i].value == NULL_TELEM)
+//            cout << "NULL" << endl;
+            ;
+        else {
+            ct++;
+            cout << table[i].value << endl;
+        }
+    }
+
+    cout << endl << "ct: " << ct << " tableSize: " << tableSize << endl;
+
+//    for (int i = -100; i < 100; i = i + 2) {
+//        bool ok = false;
+//        for (int j = 0; j < tableSize; j++) {
+//            if (table[j].value == i)
+//                ok = true;
+//        }
+//        if (!ok) {
+//            cout << "Missing: " << i << endl;
+//        }
+//    }
+
+    for (int elem = -100; elem <= 100; elem++) {
+        int v[256];
+        for (int i = 0; i < 256; i++)
+            v[i] = 0;
+
+        for (int probe = 0; probe < tableSize; probe++) {
+            int index = hash(elem, probe);
+//            cout << index << " ";
+            v[index]++;
+        }
+
+        cout << endl;
+
+        for (int i = 0; i < 256; i++)
+            if (v[i] != 1) {
+//                cout << v[i] << " " << i << endl;
+                cout << elem << " " << i << endl;
+            }
+    }
+
+}

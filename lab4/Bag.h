@@ -33,8 +33,11 @@ private:
     void resize(int capacity);
 
 public:
+
     //constructor
     Bag();
+
+    void printTable() const;
 
     //adds an element to the bag
     void add(TElem e);
