@@ -5,7 +5,10 @@
 
 using namespace std;
 
-
+/**
+ * @brief Constructor for the Bag class
+ * @TimeComplexity θ(n=16)
+ */
 Bag::Bag() {
     tableSize = 16;
     table = new Item[tableSize]{};
@@ -13,7 +16,15 @@ Bag::Bag() {
     elementCount = 0;
 }
 
-
+/**
+ * @brief Adds an element to the bag
+ * @details If the element already exists in the bag, its count is incremented.
+ * @param e Element to be added
+ * @TimeComplexity-BestCase θ(1) when the element is already in the bag
+ * and is the first element in the probe sequence
+ * @TimeComplexity-AverageCase θ(1/(1-a)) where a is the load factor
+ * @TimeComplexity-WorstCase θ(n) when the element is not in the bag and resize is needed
+ */
 void Bag::add(TElem e) {
     int probe, index, firstEmpty = -1;
 
@@ -48,6 +59,16 @@ void Bag::add(TElem e) {
 }
 
 
+/**
+ * @brief Removes an element from the bag
+ * @details If the element exists in the bag, its count is decremented.
+ * If the count reaches 0, the element is removed.
+ * @param e element to remove from bag
+ * @returns true if the element was removed, false otherwise
+ * @TimeComplexity-BestCase θ(1) when the element is the first element in the probe sequence
+ * @TimeComplexity-AverageCase θ(1/(1-a)) where a is the load factor
+ * @TimeComplexity-WorstCase θ(n) when resize is needed
+ */
 bool Bag::remove(TElem e) {
     int probe, index;
 
@@ -77,14 +98,19 @@ bool Bag::remove(TElem e) {
         }
 
         elementCount--;
-//        cout << 1 << " -> " << e << endl;
         return true;
     }
-//    cout << 0 << " -> " << e << endl;
     return false;
 }
 
-
+/**
+ * @brief Searches for an element in the bag
+ * @param e element to search for
+ * @returns true if the element exists in the bag, false otherwise
+ * @TimeComplexity-BestCase θ(1)
+ * @TimeComplexity-AverageCase θ(1/a * ln(1/(1-a))) where a is the load factor
+ * @TimeComplexity-WorstCase θ(1/(1-a)) where a is the load factor
+ */
 bool Bag::search(TElem e) const {
     int probe, index;
 
@@ -101,16 +127,13 @@ bool Bag::search(TElem e) const {
     return false;
 }
 
-int Bag::hash(TElem e, int probe) const {
-    return hash(e, probe, tableSize);
-}
-
-int Bag::hash(TElem e, int probe, int _tableSize) {
-    double c1 = 0.5, c2 = 0.5;
-    int h1 = abs(e) % _tableSize;
-    return (int) (h1 + c1 * probe + c2 * probe * probe) % _tableSize;
-}
-
+/**
+ * @brief Counts the number of occurrences of an element in the bag
+ * @param e element to count
+ * @TimeComplexity-BestCase θ(1)
+ * @TimeComplexity-AverageCase θ(1/a * ln(1/(1-a))) where a is the load factor
+ * @TimeComplexity-WorstCase θ(1/(1-a)) where a is the load factor
+ */
 int Bag::nrOccurrences(TElem e) const {
     int probe, index;
 
@@ -127,22 +150,36 @@ int Bag::nrOccurrences(TElem e) const {
     return table[index].value == e ? table[index].ct : 0;
 }
 
-int Bag::size() const {
-    return elementCount;
+/**
+ * @brief Computes the hash of an element.
+ * @param e element to hash
+ * @param probe iteration number
+ * @returns the hash of the element(0..tableSize-1)
+ * @TimeComplexity θ(1)
+ */
+int Bag::hash(TElem e, int probe) const {
+    return hash(e, probe, tableSize);
 }
 
-int Bag::getItemCount() const {
-    return itemCount;
+/**
+ * @brief Computes the hash of an element
+ * @param e element to hash
+ * @param probe iteration number
+ * @param _tableSize size of the hash table
+ * @returns the hash of the element(0.._tableSize-1)
+ * @TimeComplexity θ(1)
+ */
+int Bag::hash(TElem e, int probe, int _tableSize) {
+    double c1 = 0.5, c2 = 0.5;
+    int h1 = abs(e) % _tableSize;
+    return (int) (h1 + c1 * probe + c2 * probe * probe) % _tableSize;
 }
 
-bool Bag::isEmpty() const {
-    return elementCount == 0;
-}
-
-BagIterator Bag::iterator() const {
-    return BagIterator(*this);
-}
-
+/**
+ * @brief Resize the hash table to a new capacity
+ * @param capacity capacity of the new hash table
+ * @TimeComplexity θ(n)
+ */
 void Bag::resize(int capacity) {
     int newTableSize = capacity;
     Item *newTable = new Item[newTableSize]{};
@@ -169,10 +206,51 @@ void Bag::resize(int capacity) {
     tableSize = newTableSize;
 }
 
+/**
+ * @returns the number of elements in the bag
+ * @TimeComplexity θ(1)
+ */
+int Bag::size() const {
+    return elementCount;
+}
+
+/**
+ * @returns the number of distinct elements / items in the bag
+ * @TimeComplexity θ(1)
+ */
+int Bag::getItemCount() const {
+    return itemCount;
+}
+
+/**
+ * @returns true if the bag is empty, false otherwise
+ * @TimeComplexity θ(1)
+ */
+bool Bag::isEmpty() const {
+    return elementCount == 0;
+}
+
+/**
+ * @brief Creates an iterator for the bag
+ * @returns an iterator for the bag
+ * @TimeComplexity θ(1)
+ */
+BagIterator Bag::iterator() const {
+    return BagIterator(*this);
+}
+
+/**
+ * @brief Destructor for the bag
+ * @TimeComplexity θ(1)
+ */
 Bag::~Bag() {
     delete[]table;
 }
 
+/**
+ * @brief Prints the hash table
+ * @TimeComplexity θ(n)
+ */
 void Bag::printTable() const {
     int ct = 0;
     for (int i = 0; i < tableSize; i++) {
@@ -186,36 +264,4 @@ void Bag::printTable() const {
     }
 
     cout << endl << "ct: " << ct << " tableSize: " << tableSize << endl;
-
-//    for (int i = -100; i < 100; i = i + 2) {
-//        bool ok = false;
-//        for (int j = 0; j < tableSize; j++) {
-//            if (table[j].value == i)
-//                ok = true;
-//        }
-//        if (!ok) {
-//            cout << "Missing: " << i << endl;
-//        }
-//    }
-
-    for (int elem = -100; elem <= 100; elem++) {
-        int v[256];
-        for (int i = 0; i < 256; i++)
-            v[i] = 0;
-
-        for (int probe = 0; probe < tableSize; probe++) {
-            int index = hash(elem, probe);
-//            cout << index << " ";
-            v[index]++;
-        }
-
-        cout << endl;
-
-        for (int i = 0; i < 256; i++)
-            if (v[i] != 1) {
-//                cout << v[i] << " " << i << endl;
-                cout << elem << " " << i << endl;
-            }
-    }
-
 }

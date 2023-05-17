@@ -15,7 +15,6 @@ void testIteratorSteps(Bag &bag) {
         count++;
         bi.next();
     }
-//    cout << count << ' ' << bag.size() << endl;
     assert(count == bag.size());
 }
 
@@ -99,8 +98,6 @@ void testRemove() {
     for (int i = -100; i < 100; i = i + 2) {
         b.add(i);
     }
-
-//    b.printTable();
 
     for (int i = -100; i < 100; i++) {
         if (i % 2 == 0) {
