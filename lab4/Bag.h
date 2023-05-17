@@ -30,6 +30,8 @@ private:
 
     [[nodiscard]] int hash(TElem e, int probe) const;
 
+    [[nodiscard]] static int hash(TElem e, int probe, int _tableSize) ;
+
     void resize(int capacity);
 
 public:

@@ -77,10 +77,10 @@ bool Bag::remove(TElem e) {
         }
 
         elementCount--;
-        cout << 1 << " -> " << e << endl;
+//        cout << 1 << " -> " << e << endl;
         return true;
     }
-    cout << 0 << " -> " << e << endl;
+//    cout << 0 << " -> " << e << endl;
     return false;
 }
 
@@ -102,9 +102,13 @@ bool Bag::search(TElem e) const {
 }
 
 int Bag::hash(TElem e, int probe) const {
+    return hash(e, probe, tableSize);
+}
+
+int Bag::hash(TElem e, int probe, int _tableSize) {
     double c1 = 0.5, c2 = 0.5;
-    int h1 = abs(e) % tableSize;
-    return (int) (h1 + c1 * probe + c2 * probe * probe) % tableSize;
+    int h1 = abs(e) % _tableSize;
+    return (int) (h1 + c1 * probe + c2 * probe * probe) % _tableSize;
 }
 
 int Bag::nrOccurrences(TElem e) const {
@@ -149,7 +153,7 @@ void Bag::resize(int capacity) {
 
             // Find first empty position
             for (probe = 0; probe < newTableSize; probe++) {
-                index = hash(table[i].value, probe);
+                index = hash(table[i].value, probe, newTableSize);
 
                 if (newTable[index].value == NULL_TELEM)
                     break;

@@ -15,7 +15,7 @@ void testIteratorSteps(Bag &bag) {
         count++;
         bi.next();
     }
-    cout << count << ' ' << bag.size() << endl;
+//    cout << count << ' ' << bag.size() << endl;
     assert(count == bag.size());
 }
 
@@ -109,85 +109,85 @@ void testRemove() {
             assert(b.remove(i) == false);
         }
     }
-//	testIteratorSteps(b);
-//	assert(b.size() == 0);
-//	for (int i = -100; i <= 100; i = i + 2) {
-//		b.add(i);
-//	}
-//	for (int i = 100; i > -100; i--) {
-//		if (i % 2 == 0) {
-//			assert(b.remove(i) == true);
-//		}
-//		else {
-//			assert(b.remove(i) == false);
-//		}
-//	}
-//	testIteratorSteps(b);
-//	assert(b.size() == 1);
-//	b.remove(-100);
-//	for (int i = -100; i < 100; i++) {
-//		b.add(i);
-//		b.add(i);
-//		b.add(i);
-//		b.add(i);
-//		b.add(i);
-//	}
-//	assert(b.size() == 1000);
-//	for (int i = -100; i < 100; i++) {
-//		assert(b.nrOccurrences(i) == 5);
-//	}
-//	for (int i = -100; i < 100; i++) {
-//		assert(b.remove(i) == true);
-//	}
-//	assert(b.size() == 800);
-//	for (int i = -100; i < 100; i++) {
-//		assert(b.nrOccurrences(i) == 4);
-//	}
-//	for (int i = -200; i < 200; i++) {
-//		if (i < -100 || i >= 100) {
-//			assert(b.remove(i) == false);
-//			assert(b.remove(i) == false);
-//			assert(b.remove(i) == false);
-//			assert(b.remove(i) == false);
-//			assert(b.remove(i) == false);
-//		}
-//		else {
-//			assert(b.remove(i) == true);
-//			assert(b.remove(i) == true);
-//			assert(b.remove(i) == true);
-//			assert(b.remove(i) == true);
-//			assert(b.remove(i) == false);
-//		}
-//	}
-//	assert(b.size() == 0);
-//	for (int i = -1000; i < 1000; i++) {
-//		assert(b.nrOccurrences(i) == 0);
-//	}
-//	int min = -200;
-//	int max = 200;
-//	while (min < max) {
-//		b.add(min);
-//		b.add(max);
-//		min++;
-//		max--;
-//	}
-//	b.add(0);
-//	b.add(0);
-//	assert(b.size() == 402);
-//	testIteratorSteps(b);
-//	for (int i = -30; i < 30; i++) {
-//
-//		assert(b.search(i) == true);
-//		assert(b.remove(i) == true);
-//		if (i != 0) {
-//			assert(b.search(i) == false);
-//		}
-//		else {
-//			assert(b.search(i) == true);
-//		}
-//	}
-//	assert(b.size() == 342);
-//
+	testIteratorSteps(b);
+	assert(b.size() == 0);
+	for (int i = -100; i <= 100; i = i + 2) {
+		b.add(i);
+	}
+	for (int i = 100; i > -100; i--) {
+		if (i % 2 == 0) {
+			assert(b.remove(i) == true);
+		}
+		else {
+			assert(b.remove(i) == false);
+		}
+	}
+	testIteratorSteps(b);
+	assert(b.size() == 1);
+	b.remove(-100);
+	for (int i = -100; i < 100; i++) {
+		b.add(i);
+		b.add(i);
+		b.add(i);
+		b.add(i);
+		b.add(i);
+	}
+	assert(b.size() == 1000);
+	for (int i = -100; i < 100; i++) {
+		assert(b.nrOccurrences(i) == 5);
+	}
+	for (int i = -100; i < 100; i++) {
+		assert(b.remove(i) == true);
+	}
+	assert(b.size() == 800);
+	for (int i = -100; i < 100; i++) {
+		assert(b.nrOccurrences(i) == 4);
+	}
+	for (int i = -200; i < 200; i++) {
+		if (i < -100 || i >= 100) {
+			assert(b.remove(i) == false);
+			assert(b.remove(i) == false);
+			assert(b.remove(i) == false);
+			assert(b.remove(i) == false);
+			assert(b.remove(i) == false);
+		}
+		else {
+			assert(b.remove(i) == true);
+			assert(b.remove(i) == true);
+			assert(b.remove(i) == true);
+			assert(b.remove(i) == true);
+			assert(b.remove(i) == false);
+		}
+	}
+	assert(b.size() == 0);
+	for (int i = -1000; i < 1000; i++) {
+		assert(b.nrOccurrences(i) == 0);
+	}
+	int min = -200;
+	int max = 200;
+	while (min < max) {
+		b.add(min);
+		b.add(max);
+		min++;
+		max--;
+	}
+	b.add(0);
+	b.add(0);
+	assert(b.size() == 402);
+	testIteratorSteps(b);
+	for (int i = -30; i < 30; i++) {
+
+		assert(b.search(i) == true);
+		assert(b.remove(i) == true);
+		if (i != 0) {
+			assert(b.search(i) == false);
+		}
+		else {
+			assert(b.search(i) == true);
+		}
+	}
+	assert(b.size() == 342);
+
 }
 
 
@@ -358,9 +358,9 @@ void testQuantity() {
 
 
 void testAllExtended() {
-//	testCreate();
-//	testAdd();
+	testCreate();
+	testAdd();
     testRemove();
-//	testIterator();
-//	testQuantity();
+	testIterator();
+	testQuantity();
 }
