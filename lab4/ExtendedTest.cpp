@@ -1,4 +1,4 @@
-#include <assert.h>
+#include <cassert>
 #include "Bag.h"
 #include "ExtendedTest.h"
 #include "BagIterator.h"
@@ -15,6 +15,7 @@ void testIteratorSteps(Bag &bag) {
         count++;
         bi.next();
     }
+    cout << count << ' ' << bag.size() << endl;
     assert(count == bag.size());
 }
 
@@ -98,13 +99,15 @@ void testRemove() {
     for (int i = -100; i < 100; i = i + 2) {
         b.add(i);
     }
-//    for (int i = -100; i < 100; i++) {
-//        if (i % 2 == 0) {
-//            assert(b.remove(i) == true);
-//        } else {
-//            assert(b.remove(i) == false);
-//        }
-//    }
+
+    assert(b.remove(-94));
+    for (int i = -100; i < 100; i++) {
+        if (i % 2 == 0) {
+            assert(b.remove(i) == true);
+        } else {
+            assert(b.remove(i) == false);
+        }
+    }
 //	testIteratorSteps(b);
 //	assert(b.size() == 0);
 //	for (int i = -100; i <= 100; i = i + 2) {
@@ -355,8 +358,8 @@ void testQuantity() {
 
 void testAllExtended() {
 //	testCreate();
-//	testAdd();
-    testRemove();
+	testAdd();
+//    testRemove();
 //	testIterator();
 //	testQuantity();
 }

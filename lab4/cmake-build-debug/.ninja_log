@@ -1,7 +1,0 @@
-# ninja log v5
-9	318	7056882999010176	CMakeFiles/lab4.dir/ShortTest.cpp.obj	4f76893597d85517
-6	321	7056882999010176	CMakeFiles/lab4.dir/App.cpp.obj	bfdafe7dbdd3ff10
-14	323	7056882999070188	CMakeFiles/lab4.dir/BagIterator.cpp.obj	aa908bf7a5c91b32
-0	335	7056882999190233	CMakeFiles/lab4.dir/Bag.cpp.obj	1c2fa0002f94f743
-17	424	7056883000080416	CMakeFiles/lab4.dir/ExtendedTest.cpp.obj	8d4944ed6f2a3a52
-424	568	7056883001500740	lab4.exe	5100f963a2eb3846

@@ -3,7 +3,8 @@
 #include <iostream>
 
 //DO NOT CHANGE THIS PART
-#define NULL_TELEM (-111111)
+#define NULL_TELEM (-1111111)
+#define DELETED_TELEM (-2222222)
 typedef int TElem;
 
 class BagIterator;

@@ -15,15 +15,25 @@ Bag::Bag() {
 
 
 void Bag::add(TElem e) {
-    int probe = 0;
-    int index = hash(e, probe++);
+    int probe, index, firstEmpty = -1;
 
-    // Find matching Item or empty slot
-    while (table[index].value != NULL_TELEM && table[index].value != e)
-        index = hash(e, probe++);
+    // Find position of element if it exists, or first empty position
+    for (probe = 0; probe < tableSize; probe++) {
+        index = hash(e, probe);
+
+        if ((table[index].value == DELETED_TELEM || table[index].value == NULL_TELEM)
+            && firstEmpty == -1)
+            firstEmpty = index;
+
+        if (table[index].value == NULL_TELEM || table[index].value == e)
+            break;
+    }
 
     // Add new Item
-    if (table[index].value == NULL_TELEM) {
+    if (table[index].value != e) {
+        if (firstEmpty != -1)
+            index = firstEmpty;
+
         table[index].value = e;
         table[index].ct = 1;
         itemCount++;
@@ -31,7 +41,6 @@ void Bag::add(TElem e) {
         // Resize if load factor is too big
         if ((double) itemCount / tableSize > MAX_LOAD_FACTOR)
             resize(tableSize * GROWTH_FACTOR);
-
     } else// Add existing item
         table[index].ct++;
 
@@ -40,12 +49,18 @@ void Bag::add(TElem e) {
 
 
 bool Bag::remove(TElem e) {
-    int probe = 0;
-    int index = hash(e, probe++);
+    int probe, index;
 
     // Find index of element if it exists
-    while (table[index].value != NULL_TELEM && table[index].value != e)
-        index = hash(e, probe++);
+    for (probe = 0; probe < tableSize; probe++) {
+        index = hash(e, probe);
+
+        if (table[index].value == e)
+            break;
+
+        if (table[index].value == NULL_TELEM)
+            return false;
+    }
 
     // If element exists, decrement count
     if (table[index].value == e) {
@@ -53,7 +68,7 @@ bool Bag::remove(TElem e) {
 
         // If frequency counter is 0, remove Item
         if (table[index].ct == 0) {
-            table[index].value = NULL_TELEM;
+            table[index].value = DELETED_TELEM;
             itemCount--;
 
             // Resize if load factor is too small
@@ -62,33 +77,52 @@ bool Bag::remove(TElem e) {
         }
 
         elementCount--;
+        cout << 1 << " -> " << e << endl;
         return true;
     }
 
+    cout << 0 << " -> " << e << endl;
     return false;
 }
 
 
 bool Bag::search(TElem e) const {
-    int probe = 0;
-    int index = hash(e, probe++);
+    int probe, index;
 
-    while (table[index].value != NULL_TELEM && table[index].value != e)
-        index = hash(e, probe++);
+    for (probe = 0; probe < tableSize; probe++) {
+        index = hash(e, probe);
 
-    return table[index].value == e;
+        if (table[index].value == e)
+            return true;
+
+        if (table[index].value == NULL_TELEM)
+            break;
+    }
+
+    return false;
+}
+
+int Bag::hash(TElem e, int probe) const {
+    double c1 = 0.5, c2 = 0.5;
+    int h1 = e % tableSize;
+    return (int) (h1 + c1 * probe + c2 * probe * probe) % tableSize;
 }
 
 int Bag::nrOccurrences(TElem e) const {
-    int probe = 0;
-    int index = hash(e, probe++);
+    int probe, index;
 
-    while (table[index].value != NULL_TELEM && table[index].value != e)
-        index = hash(e, probe++);
+    for (probe = 0; probe < tableSize; probe++) {
+        index = hash(e, probe);
+
+        if (table[index].value == e)
+            break;
+
+        if (table[index].value == NULL_TELEM)
+            break;
+    }
 
     return table[index].value == e ? table[index].ct : 0;
 }
-
 
 int Bag::size() const {
     return elementCount;
@@ -106,23 +140,21 @@ BagIterator Bag::iterator() const {
     return BagIterator(*this);
 }
 
-
-int Bag::hash(TElem e, int probe) const {
-    int c1 = 0, c2 = 1;
-    return (abs(e) + c1 * probe + c2 * probe * probe) % tableSize;
-}
-
 void Bag::resize(int capacity) {
     int newTableSize = capacity;
     Item *newTable = new Item[newTableSize]{};
 
     for (int i = 0; i < tableSize; i++) {
-        if (table[i].value != NULL_TELEM) {
-            int probe = 0;
-            int index = hash(table[i].value, probe++);
+        if (table[i].value != NULL_TELEM && table[i].value != DELETED_TELEM) {
+            int probe, index;
 
-            while (newTable[index].value != NULL_TELEM)
-                index = hash(table[i].value, probe++);
+            // Find first empty position
+            for(probe = 0; probe < newTableSize; probe++) {
+                index = hash(table[i].value, probe);
+
+                if (newTable[index].value == NULL_TELEM)
+                    break;
+            }
 
             newTable[index].value = table[i].value;
             newTable[index].ct = table[i].ct;
