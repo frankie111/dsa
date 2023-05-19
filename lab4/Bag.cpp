@@ -22,8 +22,8 @@ Bag::Bag() {
  * @param e Element to be added
  * @TimeComplexity-BestCase θ(1) when the element is already in the bag
  * and is the first element in the probe sequence
- * @TimeComplexity-AverageCase θ(1/(1-a)) where a is the load factor
- * @TimeComplexity-WorstCase θ(n) when the element is not in the bag and resize is needed
+ * @TimeComplexity-AverageCase θ(1)
+ * @TimeComplexity-WorstCase θ(n) when resize is needed or when you have to traverse the entire table
  */
 void Bag::add(TElem e) {
     int probe, index, firstEmpty = -1;
@@ -66,8 +66,8 @@ void Bag::add(TElem e) {
  * @param e element to remove from bag
  * @returns true if the element was removed, false otherwise
  * @TimeComplexity-BestCase θ(1) when the element is the first element in the probe sequence
- * @TimeComplexity-AverageCase θ(1/(1-a)) where a is the load factor
- * @TimeComplexity-WorstCase θ(n) when resize is needed
+ * @TimeComplexity-AverageCase θ(1)
+ * @TimeComplexity-WorstCase θ(n) when resize is needed or when you have to traverse the entire table
  */
 bool Bag::remove(TElem e) {
     int probe, index;
@@ -108,8 +108,8 @@ bool Bag::remove(TElem e) {
  * @param e element to search for
  * @returns true if the element exists in the bag, false otherwise
  * @TimeComplexity-BestCase θ(1)
- * @TimeComplexity-AverageCase θ(1/a * ln(1/(1-a))) where a is the load factor
- * @TimeComplexity-WorstCase θ(1/(1-a)) where a is the load factor
+ * @TimeComplexity-AverageCase θ(1)
+ * @TimeComplexity-WorstCase θ(n) when you have to traverse the entire table
  */
 bool Bag::search(TElem e) const {
     int probe, index;
@@ -131,8 +131,8 @@ bool Bag::search(TElem e) const {
  * @brief Counts the number of occurrences of an element in the bag
  * @param e element to count
  * @TimeComplexity-BestCase θ(1)
- * @TimeComplexity-AverageCase θ(1/a * ln(1/(1-a))) where a is the load factor
- * @TimeComplexity-WorstCase θ(1/(1-a)) where a is the load factor
+ * @TimeComplexity-AverageCase θ(1)
+ * @TimeComplexity-WorstCase θ(n)
  */
 int Bag::nrOccurrences(TElem e) const {
     int probe, index;
