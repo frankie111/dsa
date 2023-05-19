@@ -150,6 +150,59 @@ int Bag::nrOccurrences(TElem e) const {
     return table[index].value == e ? table[index].ct : 0;
 }
 
+
+/**
+ * @brief Delete all items with maximum number of occurrences
+ * @TimeComplexity θ(n)
+ *
+ * function deleteMaxOccurrences(b) is:
+ * --------------------------------------------------------
+ * //pre:
+ *     b ist ein Bag
+ * //post:
+ *     Die Elemente mit maximalen elementCount aus b werden
+ *     gelöscht
+ * --------------------------------------------------------
+ *     max <- 0
+ *     for i <- 0, i < tableSize, i++
+ *         if table[i].ct > max then
+ *             max <- table[i].ct
+ *         endif
+ *     endfor
+ *
+ *     for i <- 0, i < tableSize, i++
+ *         if table[i].ct == max then
+ *             table[i].ct = DELETED_TELEM
+ *             itemCount = itemCount - 1
+ *             elementCount = elementCount - max
+ *         endif
+ *     endfor
+ *
+ *     if itemCount / tableSize < 1 - MAX_LOAD_FACTOR then
+ *         resize(tableSize / GROWTH_FACTOR)
+ *     endif
+ */
+void Bag::deleteMaxOccurrences() {
+    int max = 0;
+
+    // Find max number of occurences
+    for (int i = 0; i < tableSize; i++)
+        if (table[i].ct > max)
+            max = table[i].ct;
+
+    // Delete all elements with max number of occurrences
+    for (int i = 0; i < tableSize; i++)
+        if (table[i].ct == max) {
+            table[i].value = DELETED_TELEM;
+            itemCount--;
+            elementCount -= max;
+        }
+
+    // Resize if load factor is too small
+    if ((double) itemCount / tableSize < 1 - MAX_LOAD_FACTOR)
+        resize(tableSize / GROWTH_FACTOR);
+}
+
 /**
  * @brief Computes the hash of an element.
  * @param e element to hash
@@ -252,16 +305,9 @@ Bag::~Bag() {
  * @TimeComplexity θ(n)
  */
 void Bag::printTable() const {
-    int ct = 0;
     for (int i = 0; i < tableSize; i++) {
-        if (table[i].value == NULL_TELEM)
-//            cout << "NULL" << endl;
-            ;
-        else {
-            ct++;
+        if (table[i].value != NULL_TELEM) {
             cout << table[i].value << endl;
         }
     }
-
-    cout << endl << "ct: " << ct << " tableSize: " << tableSize << endl;
 }

@@ -41,6 +41,9 @@ public:
 
     void printTable() const;
 
+    //Delete all items with maximum occurrences
+    void deleteMaxOccurrences();
+
     //adds an element to the bag
     void add(TElem e);
 
