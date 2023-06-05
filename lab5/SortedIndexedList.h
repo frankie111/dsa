@@ -10,12 +10,12 @@ typedef bool (*Relation)(TComp, TComp);
 
 #define NULL_TCOMP -11111
 
-struct Node{
-    TComp info;
-    int left;
-    int right;
-    int parent;
-    int leftCount;
+struct Node {
+    TComp info = NULL_TCOMP;
+    int left = -1;
+    int right = -1;
+    int parent = -1;
+    int leftCount = 0;
 };
 
 class SortedIndexedList {
@@ -26,21 +26,27 @@ private:
     Node *nodes;
     int root;
     int capacity;
+    int head;
+    int length; // size of array
+    int elemCount;
     int firstEmpty;
+    Relation r;
+
+    int findFirstEmpty();
 
 public:
     // constructor
-    SortedIndexedList(Relation r);
+    explicit SortedIndexedList(Relation r);
 
     // returns the size of the list
-    int size() const;
+    [[nodiscard]] int size() const;
 
     //checks if the list is empty
-    bool isEmpty() const;
+    [[nodiscard]] bool isEmpty() const;
 
     // returns an element from a position
     //throws exception if the position is not valid
-    TComp getElement(int pos) const;
+    [[nodiscard]] TComp getElement(int pos) const;
 
     // adds an element to a given position
     //throws an exception if the position is not valid
@@ -52,7 +58,7 @@ public:
     TComp remove(int pos);
 
     // searches for an element and returns the first position where the element appears or -1 if the element is not in the list
-    int search(TComp e) const;
+    [[nodiscard]] int search(TComp e) const;
 
     // returns an iterator set to the first element of the list or invalid if the list is empty
     ListIterator iterator();
