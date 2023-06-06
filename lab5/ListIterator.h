@@ -11,15 +11,15 @@ private:
     const SortedIndexedList &list;
     int curr; //index of the current element
 
-    ListIterator(const SortedIndexedList &list);
+    explicit ListIterator(const SortedIndexedList &list);
 
 public:
     void first();
 
     void next();
 
-    bool valid() const;
+    [[nodiscard]] bool valid() const;
 
-    TComp getCurrent() const;
+    [[nodiscard]] TComp getCurrent() const;
 };
 

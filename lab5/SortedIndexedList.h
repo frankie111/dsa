@@ -26,13 +26,16 @@ private:
     Node *nodes;
     int root;
     int capacity;
-    int head;
     int length; // size of array
     int elemCount;
     int firstEmpty;
     Relation r;
 
+    const int GROWTH_FACTOR = 2;
+
     int findFirstEmpty();
+
+    void resize();
 
 public:
     // constructor
@@ -52,10 +55,14 @@ public:
     //throws an exception if the position is not valid
     void add(TComp e);
 
+    void addRec(int pos, TComp e);
+
     // removes an element from a given position
     //returns the removed element
     //throws an exception if the position is not valid
     TComp remove(int pos);
+
+    [[nodiscard]] int searchRec(int pos, TComp e) const;
 
     // searches for an element and returns the first position where the element appears or -1 if the element is not in the list
     [[nodiscard]] int search(TComp e) const;

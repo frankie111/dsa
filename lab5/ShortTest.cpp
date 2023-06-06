@@ -2,6 +2,7 @@
 
 #include "ListIterator.h"
 #include "SortedIndexedList.h"
+#include <iostream>
 
 using namespace std;
 
